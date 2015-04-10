@@ -1,26 +1,26 @@
 import { default as Base } from './Base'
 
-export default class Git extends Base {
+export default class Subversion extends Base {
 
   constructor(repository) {
     super(repository)
-    this.name = 'git'
+    this.name = 'subversion'
   }
 
   getVerificationCommand() {
-    return ['git', 'ls-remote', `${this.repository.url.href}.git`]
+    return ['svn', 'info', this.repository.url.href]
   }
 
   getCloneCommand(options = {}) {
     return [
-      'git',
-      'clone',
-      `${this.repository.url.href}.git`,
+      'svn',
+      'checkout',
+      this.repository.url.href,
       this.repository.getLocalPath(),
-    ].join(' ')
+    ]
   }
 
   getUpdateCommand(options = {}) {
-    return ['git', 'pull', '--ff-only']
+    return ['svn', 'update']
   }
 }

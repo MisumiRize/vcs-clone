@@ -1,26 +1,26 @@
 import { default as Base } from './Base'
 
-export default class Git extends Base {
+export default class Mercurial extends Base {
 
   constructor(repository) {
     super(repository)
-    this.name = 'git'
+    this.name = 'mercurial'
   }
 
   getVerificationCommand() {
-    return ['git', 'ls-remote', `${this.repository.url.href}.git`]
+    return ['hg', 'identity', this.repository.url.href]
   }
 
   getCloneCommand(options = {}) {
     return [
-      'git',
+      'hg',
       'clone',
-      `${this.repository.url.href}.git`,
+      this.repository.url.href,
       this.repository.getLocalPath(),
-    ].join(' ')
+    ]
   }
 
   getUpdateCommand(options = {}) {
-    return ['git', 'pull', '--ff-only']
+    return ['hg', 'pull', '--update']
   }
 }

@@ -1,18 +1,13 @@
 import path from 'path'
-import vcs from './vcs'
 
 export default class Repository {
 
-  constructor(url) {
+  constructor(url, root) {
     this.url = url
+    this.root = root
   }
 
-  getVCS() {
-    return new vcs.Git(this)
-  }
-
-  getLocalPath(root) {
-    console.log(root)
-    return path.join(root, this.url.host, this.url.path)
+  getLocalPath() {
+    return path.join(this.root, this.url.host, this.url.path)
   }
 }
