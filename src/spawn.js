@@ -13,13 +13,13 @@ export function ensure(namespace, fullCommand, options = {}) {
     proc.stdout.on('data', data => { procDebug(String(data).trim()) })
     proc.stderr.on('data', data => { procDebug(String(data).trim()) })
 
-    proc.on('close', (code) => {
+    proc.on('exit', (code) => {
       if (code == 0) {
         procDebug('command finished as success')
         resolve()
       } else {
         procDebug('command finished as error')
-        reject()
+        reject(`Command ${fullCommand.join(' ')} returned non-zero status`)
       }
     })
   })
@@ -30,10 +30,10 @@ export function silentlyVerify(namespace, fullCommand) {
   [command, ...args] = fullCommand
 
   return new Promise((resolve, reject) => {
-    procDebug(`${fullCommand.join(' ')}`)
+    procDebug(fullCommand.join(' '))
 
     let proc = childProcess.spawn(command, args)
-    proc.on('close', (code) => {
+    proc.on('exit', (code) => {
       if (code == 0) {
         procDebug('command finished as success')
         resolve(true)

@@ -1,17 +1,13 @@
 import { default as Base } from './Base'
 
 export default class Mercurial extends Base {
-
-  constructor(repository) {
-    super(repository)
-    this.name = 'mercurial'
-  }
+  name = 'mercurial'
 
   getVerificationCommand() {
     return ['hg', 'identity', this.repository.url.href]
   }
 
-  getCloneCommand(options = {}) {
+  getCloneCommand(options) {
     return [
       'hg',
       'clone',
@@ -20,7 +16,7 @@ export default class Mercurial extends Base {
     ]
   }
 
-  getUpdateCommand(options = {}) {
+  getUpdateCommand(options) {
     return ['hg', 'pull', '--update']
   }
 }

@@ -1,17 +1,13 @@
 import { default as Base } from './Base'
 
 export default class Subversion extends Base {
-
-  constructor(repository) {
-    super(repository)
-    this.name = 'subversion'
-  }
+  name = 'subversion'
 
   getVerificationCommand() {
     return ['svn', 'info', this.repository.url.href]
   }
 
-  getCloneCommand(options = {}) {
+  getCloneCommand(options) {
     return [
       'svn',
       'checkout',
@@ -20,7 +16,7 @@ export default class Subversion extends Base {
     ]
   }
 
-  getUpdateCommand(options = {}) {
+  getUpdateCommand(options) {
     return ['svn', 'update']
   }
 }
