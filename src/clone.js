@@ -50,7 +50,8 @@ export default function clone(argUrl, root, options = {}) {
       throw `Destination directory ${repository.getLocalPath()} exists`
     }
 
-    let vcs = yield DefaultVCSDetectionStrategy.detectVCS(repository)
+    let strategy = options.strategy || DefaultVCSDetectionStrategy
+    let vcs = yield strategy.detectVCS(repository)
     if (!vcs) {
       throw 'No VCS detected'
     }
