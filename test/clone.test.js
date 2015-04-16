@@ -39,9 +39,5 @@ describe('clone', () => {
   it('should spawn VCS command when update is enabled and destination directory exists', () => {
     mkdirp.sync(DESTINATION_PATH)
     return clone(REPOSITORY_PATH, `${__dirname}/.tmp`, { update: true })
-      .then(fail)
-      .catch((err) => {
-        assert.equal(err, 'Command git pull --ff-only returned non-zero status')
-      })
   })
 })

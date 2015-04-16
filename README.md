@@ -1,6 +1,8 @@
 vcs-clone
 ======
 
+[![Build Status](https://travis-ci.org/MisumiRize/vcs-clone.svg?branch=master)](https://travis-ci.org/MisumiRize/vcs-clone)
+
 An abstract VCS clone module inspired by [Golang](https://golang.org/) and [ghq](https://github.com/motemen/ghq).
 
 Supported VCSs are:
