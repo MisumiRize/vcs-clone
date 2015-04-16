@@ -13,27 +13,21 @@ describe('Subversion', () => {
   describe('#getVerificationCommand()', () => {
     it('should return verification command', () => {
       let c = vcs.getVerificationCommand()
-      assert.equal(c[0], 'svn')
-      assert.equal(c[1], 'info')
-      assert.equal(c[2], repoURL.href)
+      assert.deepEqual(c, ['svn', 'info', repoURL.href])
     })
   })
 
   describe('#getCloneCommand()', () => {
     it('should return clone command', () => {
       let c = vcs.getCloneCommand()
-      assert.equal(c[0], 'svn')
-      assert.equal(c[1], 'checkout')
-      assert.equal(c[2], repoURL.href)
-      assert.equal(c[3], `${__dirname}/${repoURL.host}${repoURL.path}`)
+      assert.deepEqual(c, ['svn', 'checkout', repoURL.href, `${__dirname}/${repoURL.host}${repoURL.path}`])
     })
   })
 
   describe('#getUpdateCommand()', () => {
     it('should return update command', () => {
       let c = vcs.getUpdateCommand()
-      assert.equal(c[0], 'svn')
-      assert.equal(c[1], 'update')
+      assert.deepEqual(c, ['svn', 'update'])
     })
   })
 })

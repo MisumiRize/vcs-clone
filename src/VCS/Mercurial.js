@@ -4,7 +4,7 @@ export default class Mercurial extends Base {
   name = 'mercurial'
 
   getVerificationCommand() {
-    return ['hg', 'identity', this.repository.url.href]
+    return ['hg', 'identify', this.repository.url.href]
   }
 
   getCloneCommand(options) {

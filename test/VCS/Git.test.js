@@ -13,28 +13,21 @@ describe('Git', () => {
   describe('#getVerificationCommand()', () => {
     it('should return verification command', () => {
       let c = vcs.getVerificationCommand()
-      assert.equal(c[0], 'git')
-      assert.equal(c[1], 'ls-remote')
-      assert.equal(c[2], `${repoURL.href}.git`)
+      assert.deepEqual(c, ['git', 'ls-remote', `${repoURL.href}.git`])
     })
   })
 
   describe('#getCloneCommand()', () => {
     it('should return clone command', () => {
       let c = vcs.getCloneCommand()
-      assert.equal(c[0], 'git')
-      assert.equal(c[1], 'clone')
-      assert.equal(c[2], `${repoURL.href}.git`)
-      assert.equal(c[3], `${__dirname}/${repoURL.host}${repoURL.path}`)
+      assert.deepEqual(c, ['git', 'clone', `${repoURL.href}.git`, `${__dirname}/${repoURL.host}${repoURL.path}`])
     })
   })
 
   describe('#getUpdateCommand()', () => {
     it('should return update command', () => {
       let c = vcs.getUpdateCommand()
-      assert.equal(c[0], 'git')
-      assert.equal(c[1], 'pull')
-      assert.equal(c[2], '--ff-only')
+      assert.deepEqual(c, ['git', 'pull', '--ff-only'])
     })
   })
 })

@@ -13,28 +13,21 @@ describe('Mercurial', () => {
   describe('#getVerificationCommand()', () => {
     it('should return verification command', () => {
       let c = vcs.getVerificationCommand()
-      assert.equal(c[0], 'hg')
-      assert.equal(c[1], 'identity')
-      assert.equal(c[2], repoURL.href)
+      assert.deepEqual(c, ['hg', 'identify', repoURL.href])
     })
   })
 
   describe('#getCloneCommand()', () => {
     it('should return clone command', () => {
       let c = vcs.getCloneCommand()
-      assert.equal(c[0], 'hg')
-      assert.equal(c[1], 'clone')
-      assert.equal(c[2], repoURL.href)
-      assert.equal(c[3], `${__dirname}/${repoURL.host}${repoURL.path}`)
+      assert.deepEqual(c, ['hg', 'clone', repoURL.href, `${__dirname}/${repoURL.host}${repoURL.path}`])
     })
   })
 
   describe('#getUpdateCommand()', () => {
     it('should return update command', () => {
       let c = vcs.getUpdateCommand()
-      assert.equal(c[0], 'hg')
-      assert.equal(c[1], 'pull')
-      assert.equal(c[2], '--update')
+      assert.deepEqual(c, ['hg', 'pull', '--update'])
     })
   })
 })
