@@ -1,0 +1,14 @@
+#!/usr/bin/env node --harmony
+
+require('debug').enable('vcs-clone,vcs-clone:*');
+
+var program = require('commander')
+  , VCSClone = require('../');
+
+program
+  .version(require('../package.json').version)
+  .option('-u, --update', 'Update if destination directory exists')
+  .option('-d, --dest [directory]', 'Destination directory', process.cwd())
+  .parse(process.argv);
+
+VCSClone.clone(program.args[0], program.dest, {update: program.update});
