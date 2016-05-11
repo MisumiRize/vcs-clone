@@ -1,5 +1,8 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "iojs-v1.0.4"
-  - "0.12"
+  - "5"
+  - "4"
+notifications:
+  slack:
+    rooms:
+      secure: EflcRyuXWBXsVWlGmk8fgjFhxMFXgNMiQwy0pQxnj+lzEFYIfJ9RfCZapchTnC5FxcmnjoNgf/GFjWkV82DUiPlGhsPoCsOIvjO6XTjHBLKcRYzBLZFPz0J6WjvTcVwEuNEUSNUjIGkgGDfxW61PNY1uIiZv8XgYKs597bMdSiU=
